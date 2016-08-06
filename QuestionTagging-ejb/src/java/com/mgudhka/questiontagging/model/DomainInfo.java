@@ -5,8 +5,14 @@
  */
 package com.mgudhka.questiontagging.model;
 
+import com.mgudhka.ontology.Node;
+import com.mgudhka.ontology.Ontology;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -15,6 +21,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -22,6 +29,8 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class DomainInfo implements Serializable  {
+    private static final File DOMAIN_DIRECTORY = new File("DomainInfo");
+    
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +44,7 @@ public class DomainInfo implements Serializable  {
     private Set<QuestionBank> questionBankSet;
     @OneToMany(mappedBy = "domainInfo")
     private Set<Concept> conceptSet;
+    
     
     
     protected DomainInfo(){
@@ -86,9 +96,20 @@ public class DomainInfo implements Serializable  {
     void removeConcept(Concept concept){
         this.conceptSet.remove(concept);
     }
+    Set<Concept> getConcept(){
+        return this.conceptSet;
+    }
 
     
-    
+    void parseDomain() throws IOException, FileNotFoundException, SAXException{
+        Ontology ontology = new Ontology(new File(DOMAIN_DIRECTORY, this.location));
+        ontology.parse();
+        for(Iterator<Node> itr = ontology.getNodeList().iterator(); itr.hasNext(); ){
+            Node node = itr.next();
+            Concept concept = new Concept(this, node.getName());
+            concept.setNode(node);
+        }
+    }
     
     
     

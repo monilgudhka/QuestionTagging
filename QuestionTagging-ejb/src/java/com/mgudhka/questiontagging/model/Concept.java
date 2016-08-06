@@ -5,6 +5,7 @@
  */
 package com.mgudhka.questiontagging.model;
 
+import com.mgudhka.ontology.Node;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import org.hibernate.annotations.NaturalId;
 
 /**
@@ -35,6 +37,8 @@ public class Concept implements Serializable, QuestionTag{
     @ManyToMany(mappedBy = "concept")
     private Set<Question> question;
     
+    @Transient
+    private Node node;
     
     
     protected Concept(){
@@ -64,6 +68,9 @@ public class Concept implements Serializable, QuestionTag{
     public DomainInfo getDomainInfo() {
         return domainInfo;
     }
+    Node getNode(){
+        return this.node;
+    }
     
     
     
@@ -72,6 +79,12 @@ public class Concept implements Serializable, QuestionTag{
     }
     void removeQuestion(Question question){
         this.question.remove(question);
+    }
+    void setNode(Node node){
+        if(!this.conceptName.equals(node.getName())){
+            throw new RuntimeException("Node doesn't match with Concept");
+        }
+        this.node = node;
     }
 
     
