@@ -23,6 +23,9 @@ import org.junit.BeforeClass;
 public class DatabaseMappingTest {
     public DatabaseMappingTest() {}
     
+    @Test
+    public void sampleTest(){}
+    
     public static String getRandom(){
         return "" + (new Date()).getTime();
     }

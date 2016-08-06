@@ -15,6 +15,7 @@ import java.util.Map;
  * @author Monil Gudhka
  */
 public class Node {
+    public static final String ALTERNATIVE = "#alternative";
     
     private final String name;
     private final Map<String, List<Object>> propertyMap;
@@ -38,6 +39,7 @@ public class Node {
         valueList.add(value);
     }
     public List<Object> getProperty(String property){
-        return this.propertyMap.get(property);
+        List<Object> valueList = this.propertyMap.get(property);
+        return (valueList==null)? new ArrayList() : valueList;
     }
 }

@@ -17,10 +17,10 @@ import java.util.Map.Entry;
  * 
  * @author Monil Gudhka
  */
-public class DataMap {
+public class Dictionary{
     
     private final Node root;
-    public DataMap(){
+    public Dictionary(){
         root = new Node(' ');
     }
     

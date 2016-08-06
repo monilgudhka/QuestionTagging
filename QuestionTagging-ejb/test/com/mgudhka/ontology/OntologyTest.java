@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author monil
+ * @author Monil Gudhka
  */
 public class OntologyTest {
     public OntologyTest() {}
@@ -37,6 +37,9 @@ public class OntologyTest {
         ontology.parse();
         Collection<Node> nodeList = ontology.getNodeList();
         assertEquals("Total Nodes parsed should be same as in OWL file", nodeCount, nodeList.size());
+        Node node = nodeList.iterator().next();
+        assertNotNull(node);
+        assertNotNull(node.getProperty(Node.ALTERNATIVE).get(0));
     }
     
 }

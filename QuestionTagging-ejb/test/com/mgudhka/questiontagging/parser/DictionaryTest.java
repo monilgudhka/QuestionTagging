@@ -10,21 +10,20 @@ import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Ignore;
 
 /**
  *
- * @author monil
+ * @author Monil Gudhka
  */
-public class DataMapTest {
+public class DictionaryTest {
     
-    public DataMapTest() {}
+    public DictionaryTest() {}
 
-    private DataMap map;
+    private Dictionary map;
     
     @Before
     public void createDataMap(){
-        map = new DataMap();
+        map = new Dictionary();
         String[] dataList = new String[]{"Array", "Linked List", "Linked Map", "Linked List Map", "Doubly Linked List"};
         for(String data : dataList){
             map.add(data, data);

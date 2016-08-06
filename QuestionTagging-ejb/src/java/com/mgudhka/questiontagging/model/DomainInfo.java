@@ -7,6 +7,7 @@ package com.mgudhka.questiontagging.model;
 
 import com.mgudhka.ontology.Node;
 import com.mgudhka.ontology.Ontology;
+import com.mgudhka.questiontagging.parser.Dictionary;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -101,13 +102,16 @@ public class DomainInfo implements Serializable  {
     }
 
     
-    void parseDomain() throws IOException, FileNotFoundException, SAXException{
+    void parseDomain(Dictionary dictionary) throws IOException, FileNotFoundException, SAXException{
         Ontology ontology = new Ontology(new File(DOMAIN_DIRECTORY, this.location));
         ontology.parse();
         for(Iterator<Node> itr = ontology.getNodeList().iterator(); itr.hasNext(); ){
             Node node = itr.next();
             Concept concept = new Concept(this, node.getName());
-            concept.setNode(node);
+            dictionary.add(node.getName(), concept);
+            for(Object alternateName: node.getProperty(Node.ALTERNATIVE)){
+                dictionary.add(alternateName.toString(), concept);
+            }
         }
     }
     
