@@ -65,9 +65,6 @@ public class DatabaseMappingTest {
     
     
     
-    
-    
-    
     @Test
     public void objectsByApplicationAndByORMShouldBeEqual(){
         DomainInfo domainInfo = new DomainInfo("domain qb test", "location qb test " + getRandom());
@@ -82,7 +79,6 @@ public class DatabaseMappingTest {
     
     
     
-   
     @Test
     public void listShouldBeMaintained(){
         Category subjective = new Category("Subjective " + getRandom());
@@ -105,7 +101,6 @@ public class DatabaseMappingTest {
         assertEquals("Category created by application and by ORM should be equal", subjective, categoryFromDatabase);
         assertEquals("QuestionTypes in Category from Database should be same as QuestionTypes added", subjective.getQuestionType(), categoryFromDatabase.getQuestionType());
     }
-    
     
     
     

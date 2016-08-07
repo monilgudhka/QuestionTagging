@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.NaturalId;
 
@@ -21,6 +23,13 @@ import org.hibernate.annotations.NaturalId;
  *
  * @author Monil Gudhka
  */
+
+@NamedQueries(
+    @NamedQuery(
+        name = "get_all_QuestionType",
+        query = "select e from QuestionType e"
+    )
+)
 @Entity
 public class QuestionType implements Serializable, QuestionTag {
     

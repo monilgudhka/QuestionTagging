@@ -5,6 +5,9 @@
  */
 package com.mgudhka.questiontagging.model;
 
+import com.mgudhka.questiontagging.parser.Dictionary;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,12 +16,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author Monil Gudhka
  */
+@NamedQueries(
+    @NamedQuery(
+        name = "get_all_QuestionBank",
+        query = "select e from QuestionBank e"
+    )
+)
 @Entity
 public class QuestionBank implements Serializable {
     
@@ -33,7 +46,8 @@ public class QuestionBank implements Serializable {
     @OneToMany(mappedBy = "questionBank")
     private Set<Question> questionSet;
     
-    
+    @Transient
+    private Dictionary dictionary;
     
     
     
@@ -45,6 +59,7 @@ public class QuestionBank implements Serializable {
         this.questionBankName = questionBankName;
         this.setDomainInfo(domainInfo);
     }
+    
     private void setDomainInfo(DomainInfo domainInfo) {
         this.domainInfo = domainInfo;
         this.domainInfo.addQuestionBank(this);
@@ -90,5 +105,10 @@ public class QuestionBank implements Serializable {
     }
     void removeQuestion(Question question){
         this.questionSet.remove(question);
+    }
+    
+    void createDictionary() throws IOException, FileNotFoundException, SAXException{
+        this.dictionary = new Dictionary();
+        this.domainInfo.parseDomain(dictionary);
     }
 }

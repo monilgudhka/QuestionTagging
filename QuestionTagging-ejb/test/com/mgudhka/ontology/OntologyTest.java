@@ -36,7 +36,7 @@ public class OntologyTest {
         Ontology ontology = new Ontology(owlFile);
         ontology.parse();
         Collection<Node> nodeList = ontology.getNodeList();
-        assertEquals("Total Nodes parsed should be same as in OWL file", nodeCount, nodeList.size());
+        assertEquals(nodeCount, nodeList.size());
         Node node = nodeList.iterator().next();
         assertNotNull(node);
         assertNotNull(node.getProperty(Node.ALTERNATIVE).get(0));

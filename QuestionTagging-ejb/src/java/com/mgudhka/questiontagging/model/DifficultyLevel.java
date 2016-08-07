@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.NaturalId;
 
@@ -20,6 +22,12 @@ import org.hibernate.annotations.NaturalId;
  *
  * @author Monil Gudhka
  */
+@NamedQueries(
+    @NamedQuery(
+        name = "get_all_DifficultyLevel",
+        query = "select e from DifficultyLevel e"
+    )
+)
 @Entity
 public class DifficultyLevel implements Serializable, QuestionTag {
 

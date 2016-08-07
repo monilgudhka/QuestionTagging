@@ -6,6 +6,7 @@
 package com.mgudhka.questiontagging.model;
 
 import com.mgudhka.questiontagging.parser.Dictionary;
+import com.mgudhka.questiontagging.parser.SearchEngine;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class DomainInfoTest {
         domainInfo.parseDomain(dictionary);
         assertEquals("Concept should be same as that of Ontology", 58, domainInfo.getConcept().size());
         Concept concept = domainInfo.getConcept().iterator().next();
-        assertEquals("Concept and Node should match", concept, dictionary.search(concept.getConceptName(), false));
+        assertEquals(concept, SearchEngine.search(dictionary, concept.getConceptName(), false));
     }
     
     @Test(expected=FileNotFoundException.class)

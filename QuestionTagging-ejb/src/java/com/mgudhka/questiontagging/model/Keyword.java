@@ -12,12 +12,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import org.hibernate.annotations.NaturalId;
 
 /**
  *
  * @author Monil Gudhka
  */
+@NamedQueries(
+    @NamedQuery(
+        name = "get_all_Keyword",
+        query = "select e from Keyword e"
+    )
+)
 @Entity
 public class Keyword implements Serializable {
 

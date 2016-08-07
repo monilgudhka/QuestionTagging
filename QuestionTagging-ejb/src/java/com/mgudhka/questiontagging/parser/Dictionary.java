@@ -5,9 +5,7 @@
  */
 package com.mgudhka.questiontagging.parser;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,6 +18,7 @@ import java.util.Map.Entry;
 public class Dictionary{
     
     private final Node root;
+    private int size;
     public Dictionary(){
         root = new Node(' ');
     }
@@ -42,61 +41,16 @@ public class Dictionary{
             }
         }
         currentNode.setValue(value);
+        this.size++;
     }
     
-    /**
-     * Search for the word and returns data represented by that word
-     * @param sentence
-     * @param caseSensitive
-     * @return
-     */
-    public Object search(String sentence, boolean caseSensitive){
-        return search(sentence, root, caseSensitive);
-    }
-    private Object search(String sentence, Node currentNode, boolean caseSensitive){
-        if(!sentence.isEmpty()){
-            char key = sentence.charAt(0);
-            String remainingSentence = sentence.substring(1);
-            Node nextNode = currentNode.getNextNode(key, caseSensitive);
-            if(nextNode != null){
-                Object value = search(remainingSentence, nextNode, caseSensitive);
-                return (value==null)? nextNode.getValue(): value;
-            }
-        }
-        return null;
-    }
-    
-    
-    public List<Object> searchAll(String sentence, boolean caseSensitive){
-        List<Object> valueList = new ArrayList<>();
-        char[] key = sentence.toCharArray();
-        int prevIndex = 0;
-        Node currentNode = root;
-        Node previousNode = null;
-        
-        for(int i=0; i<key.length; i++){
-            currentNode = currentNode.getNextNode(key[i], caseSensitive);
-            
-            if(currentNode == null){
-                if(previousNode != null){
-                    valueList.add(previousNode.getValue());
-                    previousNode = null;
-                }
-                i = prevIndex;
-                prevIndex = i+1;
-                currentNode = root;
-            }else if(currentNode.getValue() != null){
-                    previousNode = currentNode;
-                    prevIndex = i;
-            }
-        }
-        if(previousNode!=null && previousNode.getValue()!=null){
-            valueList.add(previousNode.getValue());
-        }
-        
-        return valueList;
+    public int size(){
+        return this.size;
     }
 
+    Node getRoot(){
+        return this.root;
+    }
     
     
     
@@ -120,7 +74,7 @@ public class Dictionary{
     
     
     
-    private static class Node{
+    static class Node{
         private final char key;
         private final Map<Character, Node> nextNodeMap;
         private Object value;
