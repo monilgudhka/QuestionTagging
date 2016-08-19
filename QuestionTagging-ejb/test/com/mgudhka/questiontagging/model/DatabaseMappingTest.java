@@ -23,9 +23,6 @@ import org.junit.BeforeClass;
 public class DatabaseMappingTest {
     public DatabaseMappingTest() {}
     
-    @Test
-    public void sampleTest(){}
-    
     public static String getRandom(){
         return "" + (new Date()).getTime();
     }
@@ -62,6 +59,11 @@ public class DatabaseMappingTest {
         entityManager.getTransaction().commit();
         return objFromDatabase;
     }
+    private void delete(Object obj){
+        entityManager.getTransaction().begin();
+        entityManager.remove(obj);
+        entityManager.getTransaction().commit();
+    }
     
     
     
@@ -74,6 +76,9 @@ public class DatabaseMappingTest {
         persist(bank);
         QuestionBank bankFromDatabase = find(QuestionBank.class, bank.getId());
         assertEquals("Objects created by Application and ORM should be same", bank, bankFromDatabase);
+        
+        delete(bank);
+        delete(domainInfo);
     }
     
     
@@ -81,13 +86,13 @@ public class DatabaseMappingTest {
     
     @Test
     public void listShouldBeMaintained(){
-        Category subjective = new Category("Subjective " + getRandom());
+        Category subjective = new Category("Test Category " + getRandom());
         
-        QuestionType shortAnswer = new QuestionType("shortAnswer " + getRandom());
+        QuestionType shortAnswer = new QuestionType("test shortAnswer " + getRandom());
         shortAnswer.setCategory(subjective);
-        QuestionType shortNote = new QuestionType("shortNote " + getRandom());
+        QuestionType shortNote = new QuestionType("test shortNote " + getRandom());
         shortNote.setCategory(subjective);
-        QuestionType longAnswer = new QuestionType("longAnswer " + getRandom());
+        QuestionType longAnswer = new QuestionType("test longAnswer " + getRandom());
         longAnswer.setCategory(subjective);
         
         assertEquals("Length of QuestionType in Category should be equals to subjective QuestionTypes", subjective.getQuestionType(), 3);
@@ -100,6 +105,11 @@ public class DatabaseMappingTest {
         Category categoryFromDatabase = find(Category.class, subjective.getId());
         assertEquals("Category created by application and by ORM should be equal", subjective, categoryFromDatabase);
         assertEquals("QuestionTypes in Category from Database should be same as QuestionTypes added", subjective.getQuestionType(), categoryFromDatabase.getQuestionType());
+        
+        delete(longAnswer);
+        delete(shortNote);
+        delete(shortAnswer);
+        delete(subjective);
     }
     
     
@@ -117,6 +127,8 @@ public class DatabaseMappingTest {
         
         DomainInfo domainFromDatabase = find(DomainInfo.class, domainInfo.getId());
         assertEquals("DomainInfo Version from Database and from application should be same", domainInfo.getVersion(), domainFromDatabase.getVersion(), 0.5);
+        
+        delete(domainInfo);
     }
     
     

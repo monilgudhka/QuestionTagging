@@ -19,13 +19,14 @@ class Database {
     private static final String PERSISTENCE_UNIT_NAME = "QuestionTagging-ejbPU";
     private static class EntityManagerFactoryHolder {
         private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        private static final Collection<Database> ENTITY_MANAGER_LIST = new ArrayBlockingQueue<>(5);
+        private static final Collection<Database> ENTITY_MANAGER_LIST = new ArrayBlockingQueue<>(20);
     }
     
     private static EntityManagerFactory connect(){
         return EntityManagerFactoryHolder.ENTITY_MANAGER_FACTORY;
     }
     static void disconnect(){
+        System.out.println(EntityManagerFactoryHolder.ENTITY_MANAGER_LIST.size());
         for(Database database : EntityManagerFactoryHolder.ENTITY_MANAGER_LIST){
             database.close();
         }
@@ -37,10 +38,12 @@ class Database {
     
     private EntityManager entityManager;
     Database(){
+        System.out.println("inside  Database");
         init();
     }
     private void init(){
         this.entityManager = connect().createEntityManager();
+        System.out.println("inside init Database");
         EntityManagerFactoryHolder.ENTITY_MANAGER_LIST.add(this);
     }
     EntityManager begin(){
@@ -52,7 +55,6 @@ class Database {
     }
     void close(){
         if(this.entityManager.getTransaction().isActive()){
-            System.out.println("inside commit");
             this.commit();
         }
         this.entityManager.close();

@@ -8,12 +8,16 @@ package com.mgudhka.questiontagging.service;
 import com.mgudhka.questiontagging.model.Category;
 import com.mgudhka.questiontagging.model.CongnitiveLevel;
 import com.mgudhka.questiontagging.model.DifficultyLevel;
+import com.mgudhka.questiontagging.model.QuestionBank;
 import com.mgudhka.questiontagging.model.QuestionType;
 import com.mgudhka.questiontagging.model.WHType;
+import java.io.IOException;
+import java.util.List;
 import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -28,12 +32,12 @@ public class ModelTest {
     @Before
     public void createModel(){
         model = Model.getInstance();
+        model.init();
     }
+    
     
     @Test
     public void testLoading() {
-        model.init();
-        
         assertEquals(10, model.getEntity(WHType.class).size());
         assertEquals(7, model.getEntity(CongnitiveLevel.class).size());
         assertEquals(4, model.getEntity(DifficultyLevel.class).size());
@@ -41,9 +45,27 @@ public class ModelTest {
         assertEquals(13, model.getEntity(QuestionType.class).size());
     }
     
+    @Test
+    public void testSelectQuestionBank(){
+        List<QuestionBank> questionBankList = model.getEntity(QuestionBank.class);
+        if(questionBankList.isEmpty()){
+            fail("QuestionBankList should not be empty");
+        }
+        QuestionBank questionBank = questionBankList.get(0);
+        assertNull(questionBank.getDictionary());
+        
+        try {
+            model.selectQuestionBank(questionBank);
+        } catch (IOException | SAXException ex) {
+            fail("Exception " + ex);
+        }
+        
+        assertNotNull(questionBank.getDictionary());
+    }
+    
     @After
     public void closeModel(){
-        model.close();
+        //model.close();
     }
     
 }

@@ -12,12 +12,16 @@ import com.mgudhka.questiontagging.model.Keyword;
 import com.mgudhka.questiontagging.model.QuestionBank;
 import com.mgudhka.questiontagging.model.QuestionType;
 import com.mgudhka.questiontagging.model.WHType;
+import com.mgudhka.questiontagging.parser.Dictionary;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -50,6 +54,7 @@ public class Model {
     
     public void init(){
         Database database = new Database();
+        System.out.println("inside init Model");
         EntityManager entityManager = database.begin();
         for(Class T : entityToLoad){
             entityObject.put(T, getAllRows(entityManager, T));
@@ -58,10 +63,32 @@ public class Model {
         database.close();
     }
     
+    
     public <T> List<T> getEntity(Class T){
         return entityObject.get(T);
     }
     
+    
+    public void selectQuestionBank(QuestionBank questionBank) throws IOException, FileNotFoundException, SAXException{
+        if(null != questionBank.getDictionary()){
+            return;
+        }
+        
+        Dictionary dictionary = new Dictionary();
+            
+        List<Keyword> keywordList = this.getEntity(Keyword.class);
+        for(Keyword keyword: keywordList){
+            dictionary.add(keyword.getWord(), keyword);
+        }
+
+        List<WHType> whTypeList = this.getEntity(WHType.class);
+        for(WHType whType: whTypeList){
+            dictionary.add(whType.getWhTypeName(), whType);
+        }
+
+        questionBank.getDomain().parseDomain(dictionary);
+        questionBank.setDictionary(dictionary);
+    }
     
     public void close(){
         Database.disconnect();

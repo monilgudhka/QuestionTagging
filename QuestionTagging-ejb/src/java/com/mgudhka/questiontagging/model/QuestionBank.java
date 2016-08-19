@@ -6,8 +6,6 @@
 package com.mgudhka.questiontagging.model;
 
 import com.mgudhka.questiontagging.parser.Dictionary;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -36,7 +33,7 @@ import org.xml.sax.SAXException;
 public class QuestionBank implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String questionBankName;
     private String description;
@@ -48,6 +45,8 @@ public class QuestionBank implements Serializable {
     
     @Transient
     private Dictionary dictionary;
+
+    
     
     
     
@@ -96,6 +95,13 @@ public class QuestionBank implements Serializable {
     public DomainInfo getDomain() {
         return domainInfo;
     }
+    
+    public Dictionary getDictionary() {
+        return dictionary;
+    }
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
+    }
 
     
     
@@ -105,10 +111,5 @@ public class QuestionBank implements Serializable {
     }
     void removeQuestion(Question question){
         this.questionSet.remove(question);
-    }
-    
-    void createDictionary() throws IOException, FileNotFoundException, SAXException{
-        this.dictionary = new Dictionary();
-        this.domainInfo.parseDomain(dictionary);
     }
 }

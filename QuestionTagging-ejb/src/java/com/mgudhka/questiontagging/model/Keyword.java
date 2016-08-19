@@ -30,7 +30,7 @@ import org.hibernate.annotations.NaturalId;
 public class Keyword implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @NaturalId
     private String word;

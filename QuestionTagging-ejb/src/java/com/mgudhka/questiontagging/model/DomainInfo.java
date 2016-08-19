@@ -18,6 +18,7 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class DomainInfo implements Serializable  {
     
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String domainName;
     @Column(unique = true)
@@ -51,7 +52,7 @@ public class DomainInfo implements Serializable  {
     
     @OneToMany(mappedBy = "domainInfo")
     private Set<QuestionBank> questionBankSet;
-    @OneToMany(mappedBy = "domainInfo")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "domainInfo")
     private Set<Concept> conceptSet;
     
     
@@ -110,7 +111,7 @@ public class DomainInfo implements Serializable  {
     }
 
     
-    void parseDomain(Dictionary dictionary) throws IOException, FileNotFoundException, SAXException{
+    public void parseDomain(Dictionary dictionary) throws IOException, FileNotFoundException, SAXException{
         Ontology ontology = new Ontology(new File(DOMAIN_DIRECTORY, this.location));
         ontology.parse();
         for(Iterator<Node> itr = ontology.getNodeList().iterator(); itr.hasNext(); ){

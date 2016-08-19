@@ -32,7 +32,7 @@ import org.hibernate.annotations.NaturalId;
 public class DifficultyLevel implements Serializable, QuestionTag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @NaturalId
     private String difficultyLevelName;
