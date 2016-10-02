@@ -1,0 +1,21 @@
+{
+    "QuestionBank": {
+        "getAll": "http://localhost:8084/QuestionTagging/webapi/bank/",
+        "get": "http://localhost:8084/QuestionTagging/webapi/bank/{questionBankId}",
+        "post": "http://localhost:8084/QuestionTagging/webapi/bank/",
+        "delete": "http://localhost:8084/QuestionTagging/webapi/bank/{questionBankId}",
+        "Question": {
+            "getAll": "http://localhost:8084/QuestionTagging/webapi/bank/{questionBankId}/question",
+            "get": "http://localhost:8084/QuestionTagging/webapi/bank/{questionBankId}/question/{questionId}",
+            "post": "http://localhost:8084/QuestionTagging/webapi/bank/{questionBankId}/question",
+            "delete": "http://localhost:8084/QuestionTagging/webapi/bank/{questionBankId}/question/{questionId}",
+            "put": "http://localhost:8084/QuestionTagging/webapi/bank/{questionBankId}/question/{questionId}"
+        }
+    },
+    "domain": {
+        "getAll": "http://localhost:8084/QuestionTagging/webapi/domain",
+        "get": "http://localhost:8084/QuestionTagging/webapi/domain/{domainId}",
+        "post": "http://localhost:8084/QuestionTagging/webapi/domain"
+    }
+
+}

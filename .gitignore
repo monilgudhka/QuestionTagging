@@ -1,3 +1,6 @@
 /QuestionTagging-war/build/
 /QuestionTagging-war/dist/
 /QuestionTagging-ejb/dist/
+/QuestionTagging-ejb/build/
+/QuestionTagging-ejb/nbproject/private/
+/QuestionTagging-war/nbproject/private/
