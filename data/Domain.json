@@ -1,0 +1,19 @@
+{
+  "domainInfoList": [
+    {
+      "domainName": "Data Structure",
+      "version": "2.0",
+      "link": "/test/DomainDetail.json"
+    },
+    {
+      "domainName": "Computer Networks",
+      "version": "1.0",
+      "link": "/test/DomainDetail.json"
+    },
+    {
+      "domainName": "Micro Processor",
+      "version": "1.0",
+      "link": "/test/DomainDetail.json"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23 Oct, 2016, 7:29:15 PM
+    Author     : monil
+*/
+
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+.drawer {
+  border: none;
+}
+.drawer .navigation {
+  z-index: -2;
+}
+.navigation {
+  flex-grow: 1;
+}
+.home-layout .navigation .mdl-navigation__link {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.56);
+  font-weight: 500;
+}
+.home-layout .navigation .mdl-navigation__link:hover {
+  background-color: #00BCD4;
+  color: #37474F;
+}
+.navigation .mdl-navigation__link .material-icons {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.56);
+  margin-right: 32px;
+}
+
+
+.pointer {
+    cursor: pointer;
+}

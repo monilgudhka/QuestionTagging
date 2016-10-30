@@ -1,0 +1,28 @@
+{
+  "questionBankList": [
+    {
+      "title": "Data Structure",
+      "icon": "book",
+      "page": "page/questionbank.html",
+      "description": "This Question Bank contains Question related to Data Structure",
+      "link": "data/QuestionBankDetail.json",
+      "domainInfo": "1"
+    },
+    {
+      "title": "Computer Networks",
+      "icon": "book",
+      "page": "page/questionbank.html",
+      "description": "This Question Bank contains Question related to Computer Networks",
+      "link": "data/QuestionBankDetail.json",
+      "domainInfo": "2"
+    },
+    {
+      "title": "Micro Processor",
+      "icon": "book",
+      "page": "page/questionbank.html",
+      "description": "This Question Bank contains Question related to Micro Processors",
+      "link": "data/QuestionBankDetail.json",
+      "domainInfo": "3"
+    }
+  ]
+}

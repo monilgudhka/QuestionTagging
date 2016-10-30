@@ -1,0 +1,37 @@
+{
+  "questionList": [
+    {
+      "questionText": "Define Data Structure",
+      "congnitiveLevel": "1",
+      "questionType": "1",
+      "whType": "1",
+      "difficultyLevel": "1",
+      "concept": [
+        "Data Structure"
+      ]
+    },
+    {
+      "questionText": "Difference between Array and Linked List",
+      "congnitiveLevel": "1",
+      "questionType": "1",
+      "whType": "1",
+      "difficultyLevel": "1",
+      "concept": [
+        "Array",
+        "Linked List"
+      ]
+    },
+    {
+      "questionText": "Write a program to implement stack using array and linked list",
+      "congnitiveLevel": "1",
+      "questionType": "1",
+      "whType": "1",
+      "difficultyLevel": "1",
+      "concept": [
+        "Stack",
+        "Array",
+        "Linked List"
+      ]
+    }
+  ]
+}

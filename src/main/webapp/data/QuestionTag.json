@@ -1,0 +1,52 @@
+{
+  "questionTag": {
+    "congnitiveLevel": [
+      {
+        "congnitiveLevelName": "Remembering",
+        "description": "Just to remember"
+      },
+      {
+        "congnitiveLevelName": "Understand",
+        "description": "understand and answer the question"
+      }
+    ],
+    "category": [
+      {
+        "categoryName": "Subjective"
+      },
+      {
+        "categoryName": "Objective"
+      }
+    ],
+    "questionType": [
+      {
+        "questionTypeName": "Fill in the blank",
+        "category": "2",
+        "description": "fill the empty blank"
+      },
+      {
+        "questionTypeName": "Answer the following",
+        "category": "1",
+        "description": "answer the question in 1-5 lines"
+      }
+    ],
+    "whType": [
+      {
+        "whTypeName": "What"
+      },
+      {
+        "whTypeName": "How"
+      }
+    ],
+    "difficultyLevel": [
+      {
+        "difficultyLevelName": "Easy",
+        "description": "Anyone can answer it"
+      },
+      {
+        "difficultyLevelName": "Hard",
+        "description": "Expert can answer it"
+      }
+    ]
+  }
+}

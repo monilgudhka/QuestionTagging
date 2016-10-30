@@ -1,0 +1,13 @@
+{
+  "domainInfo": {
+    "domainName": "Data Structure",
+    "location": "data_structure.owl",
+    "version": "2.0",
+    "concept": [
+      "Array",
+      "Linked List",
+      "Stack",
+      "Queue"
+    ]
+  }
+}

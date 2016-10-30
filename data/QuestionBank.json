@@ -1,0 +1,22 @@
+{
+  "questionBankList": [
+    {
+      "questionBankName": "Data Structure",
+      "description": "This Question Bank contains Question related to Data Structure",
+      "link": "data/QuestionBankDetail.json",
+      "domainInfo": "1"
+    },
+    {
+      "questionBankName": "Computer Networks",
+      "description": "This Question Bank contains Question related to Computer Networks",
+      "link": "data/QuestionBankDetail.json",
+      "domainInfo": "2"
+    },
+    {
+      "questionBankName": "Micro Processor",
+      "description": "This Question Bank contains Question related to Micro Processors",
+      "link": "data/QuestionBankDetail.json",
+      "domainInfo": "3"
+    }
+  ]
+}
