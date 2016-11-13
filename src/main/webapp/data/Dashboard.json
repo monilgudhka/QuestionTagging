@@ -1,0 +1,36 @@
+{
+  "widgetList": [
+    {
+      "title": "Domain",
+      "itemList": [
+        {
+          "icon": "label",
+          "name": "Data Structure"
+        },
+        {
+          "icon": "label",
+          "name": "Computer Networks"
+        },
+        {
+          "icon": "label",
+          "name": "Micro Processor"
+        }
+      ]
+    },
+    {
+      "title": "Congnitive Level",
+      "itemList": [
+        {
+          "icon": "label",
+          "name": "Remembering",
+          "description": "Just to remember"
+        },
+        {
+          "icon": "label",
+          "name": "Understand",
+          "description": "understand and answer the question"
+        }
+      ]
+    }
+  ]
+}

@@ -1,22 +1,4 @@
-angular.module("QuestionTaggingApp", [])
-
-
-.factory("database", ["$http", function($http){
-    return {
-        get: function(url, callback){
-            $http.get(url)
-            .then(function(response){
-                callback(response.data);
-            });
-        },
-        init: function(callback){
-            this.get("data/QuestionTaggingApp.json", function(response){
-                callback(response["navigation"]);
-            });
-        }
-    };
-}])
-
+angular.module("QuestionTaggingApp", ["Backend"])
         
 .directive("main", ["$compile", function(compile){
     return {
@@ -46,16 +28,25 @@ angular.module("QuestionTaggingApp", [])
     };
 }])
 
-        
-.controller("MainController", ["$scope", "database", function(scope, database){
+    
+.controller("DashboardController", ["$scope", "Dashboard", function(scope, dashboard){
+    scope.widgetList;
+    scope.init = function(){
+        dashboard.init(function(response){
+            scope.widgetList = response;
+        });
+    };
+}])
+    
+.controller("MainController", ["$scope", "Navigation", "Database", function(scope, Navigation, Database){
     scope.navigationList = [];
     scope.navigation = undefined;
     
     scope.init = function(){
-        database.init(function(navigationList){
+        Navigation.init(function(navigationList){
             navigationList.forEach(function(data){
                 if(angular.isDefined(data["url"])){
-                    database.get(data["url"], function(response){
+                    Database.get(data["url"], function(response){
                         response[data["tag"]].forEach(function(item){
                             scope.navigationList.push(item);
                         });

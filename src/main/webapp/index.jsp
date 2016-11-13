@@ -28,5 +28,6 @@
     <script src="plugin/angular/angular.js"></script>
     <script src="plugin/material-design-lite/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="script/backend.js"></script>
     <script src="script/main.js"></script>
 </html>

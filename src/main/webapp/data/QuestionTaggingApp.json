@@ -1,14 +1,14 @@
 {
-    "navigation": [
-        {
-            "title": "Dashboard",
-            "page": "page/dashboard.html",
-            "icon": "dashboard"
-        },
-        {
-            "tag": "questionBankList",
-            "page": "page/questionbank.html",
-            "url": "data/QuestionBank.json"
-        }
-    ]
+  "navigation": [
+    {
+      "title": "Dashboard",
+      "page": "page/dashboard.html",
+      "icon": "dashboard"
+    },
+    {
+      "tag": "questionBankList",
+      "page": "page/questionbank.html",
+      "url": "data/QuestionBank.json"
+    }
+  ]
 }
